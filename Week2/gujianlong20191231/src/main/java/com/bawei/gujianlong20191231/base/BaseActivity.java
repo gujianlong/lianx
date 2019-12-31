@@ -1,8 +1,8 @@
-package com.example.myapplication.base;
+package com.bawei.gujianlong20191231.base;
 /*
  *@auther:谷建龙
- *@Date: 2019/12/30
- *@Time:14:11
+ *@Date: 2019/12/31
+ *@Time:9:19
  *@Description:
  * */
 
@@ -12,8 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.contract.Contract;
-
+import com.bawei.gujianlong20191231.contract.Contract;
 
 import butterknife.ButterKnife;
 
@@ -33,7 +32,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         startDing();
     }
 
-
     protected abstract void startDing();
 
     protected abstract void initView();
@@ -41,7 +39,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected abstract P getPresenter();
 
     protected abstract int layoutId();
-
 
     @Override
     protected void onDestroy() {
