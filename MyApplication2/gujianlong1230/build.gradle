@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -23,7 +23,11 @@ android {
     }
 
 }
-
+greendao {
+    schemaVersion 1 //数据库版本号
+    daoPackage 'com.example.gujianlong1230.database' //设置时生成代码的目录
+    targetGenDir 'src/main/java' //设置DaoMaster、DaoSession、Dao目录
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -32,4 +36,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //OKhttp依赖
+//OKhttp的核心类使用
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+//OKhttp的日志拦截器
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    //Glide依赖
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'org.greenrobot:greendao:3.2.2'
+
+//Gson依赖
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.tongchexinfeitao:QRCodeLibrary:1.0'
+
+//RecyclerView依赖
+    implementation 'com.android.support:recyclerview-v7:29.0.2'
+    //XBanner依赖
+    implementation 'com.github.xiaohaibin:XBanner:1.7.0'
+
 }

@@ -7,5 +7,22 @@ package com.example.lianxi.mvp;
  * */
 
 
-public class Model {
+import com.example.lianxi.contract.Contract;
+import com.example.lianxi.utils.NetUtils;
+
+public class Model implements Contract.IModel {
+    @Override
+    public void getInfoParams(String url, Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getInfo(url, new NetUtils.NetCallBack() {
+            @Override
+            public void onSuccess(String url) {
+                myCallBack.onSuccess(url);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                myCallBack.onError(throwable);
+            }
+        });
+    }
 }

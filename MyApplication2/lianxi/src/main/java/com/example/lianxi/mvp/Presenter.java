@@ -7,5 +7,29 @@ package com.example.lianxi.mvp;
  * */
 
 
-public class Presenter {
+import com.example.lianxi.base.BasePresenter;
+import com.example.lianxi.contract.Contract;
+
+public class Presenter extends BasePresenter {
+    private Contract.IModel iModel;
+
+    @Override
+    protected void initModel() {
+        iModel = new Model();
+    }
+
+    @Override
+    public void getInfoParams(String url) {
+        iModel.getInfoParams(url, new Contract.MyCallBack() {
+            @Override
+            public void onSuccess(String url) {
+                getView().onSuccess(url);
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                getView().onError(throwable);
+            }
+        });
+    }
 }

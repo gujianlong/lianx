@@ -7,5 +7,25 @@ package com.example.gujianlong1230.contract;
  * */
 
 
-public class Contract {
+public interface Contract {
+    interface MyCallBack {
+        void onSuccess(String url);
+
+        void onError(Throwable throwable);
+    }
+
+    interface IView {
+        void onSuccess(String url);
+
+        void onError(Throwable throwable);
+    }
+
+    interface IModel {
+        void getInfo(String url, MyCallBack myCallBack);
+    }
+
+    interface IPresenter {
+        void getInfo(String url);
+    }
+
 }

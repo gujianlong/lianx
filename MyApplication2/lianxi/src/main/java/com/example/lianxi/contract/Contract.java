@@ -7,5 +7,24 @@ package com.example.lianxi.contract;
  * */
 
 
-public class Contract {
+public interface Contract {
+    interface MyCallBack {
+        void onSuccess(String url);
+
+        void onError(Throwable throwable);
+    }
+
+    interface IView {
+        void onSuccess(String url);
+
+        void onError(Throwable throwable);
+    }
+
+    interface IModel {
+        void getInfoParams(String url, MyCallBack myCallBack);
+    }
+
+    interface IPresenter {
+        void getInfoParams(String url);
+    }
 }
