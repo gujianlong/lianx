@@ -1,2 +1,2 @@
-include ':app', ':gujianlong20191231'
+include ':app', ':gujianlong20191231', ':my', ':week', ':week2', ':gujianlong20200106'
 rootProject.name='My Application'
