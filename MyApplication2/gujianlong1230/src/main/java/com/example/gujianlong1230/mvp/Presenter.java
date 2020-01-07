@@ -10,6 +10,8 @@ package com.example.gujianlong1230.mvp;
 import com.example.gujianlong1230.base.BasePresenter;
 import com.example.gujianlong1230.contract.Contract;
 
+import java.util.Map;
+
 public class Presenter extends BasePresenter {
     private Contract.IModel iModel;
 
@@ -18,17 +20,33 @@ public class Presenter extends BasePresenter {
         iModel = new Model();
     }
 
+
     @Override
-    public void getInfo(String url) {
-        iModel.getInfo(url, new Contract.MyCallBack() {
+    public void getInfo(String url, Class cls) {
+        iModel.getInfo(url, cls, new Contract.MyCallBack() {
             @Override
-            public void onSuccess(String url) {
-                getView().onSuccess(url);
+            public void onSuccess(Object o) {
+                getView().onSuccess(o);
             }
 
             @Override
-            public void onError(Throwable throwable) {
-                getView().onError(throwable);
+            public void onError(String error) {
+                getView().onError(error);
+            }
+        });
+    }
+
+    @Override
+    public void getInfoParam(String url, Map<String, Object> map, Class cls) {
+        iModel.getInfoParam(url, map, cls, new Contract.MyCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                getView().onSuccess(o);
+            }
+
+            @Override
+            public void onError(String error) {
+                getView().onError(error);
             }
         });
     }

@@ -7,5 +7,9 @@ package com.example.gujianlong1230.url;
  * */
 
 
-public class MyUrl {
+public interface MyUrl {
+    String BeanUrl = "http://172.17.8.100/small/";
+    String BannerBean = "commodity/v1/bannerShow";
+    String HomeBean = "commodity/v1/commodityList";
+    String CartBean = "verify/v1/findShoppingCart";
 }

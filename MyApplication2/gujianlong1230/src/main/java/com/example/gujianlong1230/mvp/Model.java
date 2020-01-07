@@ -10,18 +10,36 @@ package com.example.gujianlong1230.mvp;
 import com.example.gujianlong1230.contract.Contract;
 import com.example.gujianlong1230.utils.NetUtils;
 
+import java.util.Map;
+
 public class Model implements Contract.IModel {
+
     @Override
-    public void getInfo(String url, final Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getInfo(url, new NetUtils.NetCallBack() {
+    public void getInfo(String url, Class cls, final Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getJsonGet(url, cls, new NetUtils.NetCallBack() {
             @Override
-            public void onSuccess(String url) {
-                myCallBack.onSuccess(url);
+            public void onSuccess(Object o) {
+                myCallBack.onSuccess(o);
             }
 
             @Override
-            public void onError(Throwable throwable) {
-                myCallBack.onError(throwable);
+            public void onError(String error) {
+                myCallBack.onError(error);
+            }
+        });
+    }
+
+    @Override
+    public void getInfoParam(String url, Map<String, Object> map, Class cls, final Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getJsonGetParams(url, map, cls, new NetUtils.NetCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                myCallBack.onSuccess(o);
+            }
+
+            @Override
+            public void onError(String error) {
+                myCallBack.onError(error);
             }
         });
     }

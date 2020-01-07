@@ -7,5 +7,8 @@ package com.example.myapplication.url;
  * */
 
 
-public class MyUrl {
+public interface MyUrl {
+    String BEANURL = "http://172.17.8.100/small/";
+    String HOMEBEAN = "user/v1/login";
+    String BANNERBEAN="commodity/v1/bannerShow";
 }

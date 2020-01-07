@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.bean;
+package com.example.myapplication.bean;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30
@@ -7,7 +7,7 @@ package com.example.gujianlong1230.bean;
  * */
 
 
-import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
+
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class BannerBean {
         this.result = result;
     }
 
-    public static class ResultBean extends SimpleBannerInfo {
+    public static class ResultBean {
         /**
          * imageUrl : http://172.17.8.100/images/small/banner/cj.png
          * jumpUrl : http://172.17.8.100/htm/lottery/index.html
@@ -91,9 +91,5 @@ public class BannerBean {
             this.title = title;
         }
 
-        @Override
-        public Object getXBannerUrl() {
-            return null;
-        }
     }
 }

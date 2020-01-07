@@ -7,25 +7,31 @@ package com.example.gujianlong1230.contract;
  * */
 
 
-public interface Contract {
-    interface MyCallBack {
-        void onSuccess(String url);
+import java.util.Map;
 
-        void onError(Throwable throwable);
+public interface Contract {
+    interface MyCallBack<T> {
+        void onSuccess(T t);
+
+        void onError(String error);
     }
 
-    interface IView {
-        void onSuccess(String url);
+    interface IView<T> {
+        void onSuccess(T t);
 
-        void onError(Throwable throwable);
+        void onError(String error);
     }
 
     interface IModel {
-        void getInfo(String url, MyCallBack myCallBack);
+        void getInfo(String url, Class cls, MyCallBack myCallBack);
+
+        void getInfoParam(String url, Map<String, Object> map, Class cls, MyCallBack myCallBack);
     }
 
     interface IPresenter {
-        void getInfo(String url);
+        void getInfo(String url, Class cls);
+
+        void getInfoParam(String url, Map<String, Object> map, Class cls);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.mvp;
+package com.example.myapplication.mvp;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30
@@ -7,11 +7,14 @@ package com.example.gujianlong1230.mvp;
  * */
 
 
-import com.example.gujianlong1230.base.BasePresenter;
-import com.example.gujianlong1230.contract.Contract;
+import com.example.myapplication.base.BasePresenter;
+import com.example.myapplication.contract.Contract;
+
+import java.util.Map;
 
 public class Presenter extends BasePresenter {
     private Contract.IModel iModel;
+
 
     @Override
     protected void initModel() {
@@ -19,16 +22,31 @@ public class Presenter extends BasePresenter {
     }
 
     @Override
-    public void getInfo(String url) {
-        iModel.getInfo(url, new Contract.MyCallBack() {
+    public void getInfo(String url, Class cls) {
+        iModel.getInfo(url, cls, new Contract.MyCallBack() {
             @Override
-            public void onSuccess(String url) {
-                getView().onSuccess(url);
+            public void onSuccess(Object o) {
+                getView().onSuccess(o);
             }
 
             @Override
-            public void onError(Throwable throwable) {
-                getView().onError(throwable);
+            public void onError(String error) {
+                getView().onError(error);
+            }
+        });
+    }
+
+    @Override
+    public void postInfo(String url, Class cls, Map<String, Object> map) {
+        iModel.postInfo(url, cls, map, new Contract.MyCallBack() {
+            @Override
+            public void onSuccess(Object o) {
+                getView().onSuccess(o);
+            }
+
+            @Override
+            public void onError(String error) {
+                getView().onError(error);
             }
         });
     }

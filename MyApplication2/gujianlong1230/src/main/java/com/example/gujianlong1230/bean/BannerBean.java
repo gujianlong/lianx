@@ -7,6 +7,8 @@ package com.example.gujianlong1230.bean;
  * */
 
 
+import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
+
 import java.util.List;
 
 public class BannerBean {
@@ -44,7 +46,7 @@ public class BannerBean {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean extends SimpleBannerInfo {
         /**
          * imageUrl : http://172.17.8.100/images/small/banner/cj.png
          * jumpUrl : http://172.17.8.100/htm/lottery/index.html
@@ -87,6 +89,11 @@ public class BannerBean {
 
         public void setTitle(String title) {
             this.title = title;
+        }
+
+        @Override
+        public Object getXBannerUrl() {
+            return null;
         }
     }
 }

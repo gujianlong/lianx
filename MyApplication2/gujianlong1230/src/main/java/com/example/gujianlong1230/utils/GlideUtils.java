@@ -19,7 +19,7 @@ import com.example.gujianlong1230.bean.UserBean;
 import java.util.List;
 
 public class GlideUtils {
-    public static void loadImage(List<UserBean.ResultBean.MlssBean.CommodityListBeanXX> url, ImageView imageView) {
+    public static void loadImage(String url, ImageView imageView) {
         Glide.with(MyApp.mContext)
                 .load(url)
                 .priority(Priority.HIGH)

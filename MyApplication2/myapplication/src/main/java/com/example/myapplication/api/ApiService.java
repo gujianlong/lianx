@@ -7,5 +7,25 @@ package com.example.myapplication.api;
  * */
 
 
-public class ApiService {
+import com.example.myapplication.bean.Bean;
+
+import java.util.Map;
+
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
+
+public interface ApiService {
+
+    @POST
+    Observable<ResponseBody> postInfo(@Url String url, @QueryMap Map<String, Object> map);
+
+    @GET
+    Observable<ResponseBody> getInfo(@Url String url);
 }

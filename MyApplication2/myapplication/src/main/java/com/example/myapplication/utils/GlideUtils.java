@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.utils;
+package com.example.myapplication.utils;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30
@@ -12,11 +12,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.gujianlong1230.R;
-import com.example.gujianlong1230.app.MyApp;
-import com.example.gujianlong1230.bean.UserBean;
+import com.example.myapplication.R;
+import com.example.myapplication.app.MyApp;
 
-import java.util.List;
 
 public class GlideUtils {
     public static void loadImage(String url, ImageView imageView) {

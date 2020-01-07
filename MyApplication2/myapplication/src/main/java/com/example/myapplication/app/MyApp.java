@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.app;
+package com.example.myapplication.app;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30

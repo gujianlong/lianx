@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.base;
+package com.example.myapplication.base;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30
@@ -12,7 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gujianlong1230.contract.Contract;
+import com.example.myapplication.contract.Contract;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements Contract.IView {
     public P mPresenter;

@@ -1,4 +1,4 @@
-package com.example.gujianlong1230.base;
+package com.example.myapplication.base;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/30
@@ -7,7 +7,9 @@ package com.example.gujianlong1230.base;
  * */
 
 
-import com.example.gujianlong1230.contract.Contract;
+
+
+import com.example.myapplication.contract.Contract;
 
 import java.lang.ref.WeakReference;
 
