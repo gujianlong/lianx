@@ -9,7 +9,9 @@ import android.widget.ExpandableListView;
 import com.example.gujianlong1230.adabter.CartAdapter;
 import com.example.gujianlong1230.base.BaseActivity;
 import com.example.gujianlong1230.base.BasePresenter;
+import com.example.gujianlong1230.bean.BannerBean;
 import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.mvp.Presenter;
 import com.example.gujianlong1230.url.MyUrl;
 
@@ -27,10 +29,7 @@ public class CartActivity extends BaseActivity {
 
     @Override
     protected void startDing() {
-        Map<String, Object> map = new HashMap();
-        map.put("sessionId", "157835847656211357");
-        map.put("userId", "11357");
-        mPresenter.getInfoParam(MyUrl.CartBean, map, CartBean.class);
+        mPresenter.getInfoParam();
         cartAdapter = new CartAdapter(this, list);
         elv.setAdapter(cartAdapter);
         for (int i = 0; i < list.size(); i++) {
@@ -53,16 +52,35 @@ public class CartActivity extends BaseActivity {
         return R.layout.activity_gouwuche;
     }
 
+
     @Override
-    public void onSuccess(Object o) {
-        if (o instanceof CartBean) {
-            list.addAll(((CartBean) o).getResult());
-            cartAdapter.notifyDataSetChanged();
-        }
+    public void onHomeSuccess(UserBean userBean) {
+
     }
 
     @Override
-    public void onError(String error) {
+    public void onHomeError(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onBannerSuccess(BannerBean bannerBean) {
+
+    }
+
+    @Override
+    public void onBannerError(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCartSuccess(CartBean cartBean) {
+        list.addAll(cartBean.getResult());
+        cartAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCartError(Throwable throwable) {
 
     }
 }

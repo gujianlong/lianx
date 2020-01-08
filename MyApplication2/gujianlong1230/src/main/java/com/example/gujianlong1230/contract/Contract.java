@@ -7,31 +7,55 @@ package com.example.gujianlong1230.contract;
  * */
 
 
+import com.example.gujianlong1230.bean.BannerBean;
+import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.UserBean;
+
 import java.util.Map;
 
 public interface Contract {
-    interface MyCallBack<T> {
-        void onSuccess(T t);
+    interface MyCallBack {
+        void onHomeSuccess(UserBean userBean);
 
-        void onError(String error);
+        void onHomeError(Throwable throwable);
+
+        void onBannerSuccess(BannerBean bannerBean);
+
+        void onBannerError(Throwable throwable);
+
+        void onCartSuccess(CartBean cartBean);
+
+        void onCartError(Throwable throwable);
     }
 
-    interface IView<T> {
-        void onSuccess(T t);
+    interface IView {
+        void onHomeSuccess(UserBean userBean);
 
-        void onError(String error);
+        void onHomeError(Throwable throwable);
+
+        void onBannerSuccess(BannerBean bannerBean);
+
+        void onBannerError(Throwable throwable);
+
+        void onCartSuccess(CartBean cartBean);
+
+        void onCartError(Throwable throwable);
     }
 
     interface IModel {
-        void getInfo(String url, Class cls, MyCallBack myCallBack);
+        void getInfoBanner(MyCallBack myCallBack);
 
-        void getInfoParam(String url, Map<String, Object> map, Class cls, MyCallBack myCallBack);
+        void getInfo(MyCallBack myCallBack);
+
+        void getInfoParam(MyCallBack myCallBack);
     }
 
     interface IPresenter {
-        void getInfo(String url, Class cls);
+        void getInfoBanner();
 
-        void getInfoParam(String url, Map<String, Object> map, Class cls);
+        void getInfo();
+
+        void getInfoParam();
     }
 
 }

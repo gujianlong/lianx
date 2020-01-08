@@ -7,18 +7,28 @@ package com.example.gujianlong1230.api;
  * */
 
 
+import com.example.gujianlong1230.adabter.HomeAdapter;
+import com.example.gujianlong1230.bean.BannerBean;
+import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.UserBean;
+
 import java.util.Map;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface ApiService {
-    @GET
-    Observable<ResponseBody> getInfoNo(@Url String url);
+    @GET("commodity/v1/bannerShow")
+    Observable<BannerBean> getInfoBanner();
 
-    @GET
-    Observable<ResponseBody> getInfoParam(@Url String url, @QueryMap Map<String, Object> map);
+    @GET("commodity/v1/commodityList")
+    Observable<UserBean> getInfoNot();
+
+
+    @GET("verify/v1/findShoppingCart")
+    Observable<CartBean> getInfoParam(@Header("userId") String userId, @Header("sessionId") String sessionId);
 }

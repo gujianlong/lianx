@@ -8,7 +8,11 @@ package com.example.gujianlong1230.mvp;
 
 
 import com.example.gujianlong1230.base.BasePresenter;
+import com.example.gujianlong1230.bean.BannerBean;
+import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.contract.Contract;
+import com.example.gujianlong1230.utils.NetUtils;
 
 import java.util.Map;
 
@@ -22,32 +26,108 @@ public class Presenter extends BasePresenter {
 
 
     @Override
-    public void getInfo(String url, Class cls) {
-        iModel.getInfo(url, cls, new Contract.MyCallBack() {
+    public void getInfoBanner() {
+        iModel.getInfoBanner(new Contract.MyCallBack() {
             @Override
-            public void onSuccess(Object o) {
-                getView().onSuccess(o);
+            public void onHomeSuccess(UserBean userBean) {
+                getView().onHomeSuccess(userBean);
             }
 
             @Override
-            public void onError(String error) {
-                getView().onError(error);
+            public void onHomeError(Throwable throwable) {
+                getView().onHomeError(throwable);
+            }
+
+            @Override
+            public void onBannerSuccess(BannerBean bannerBean) {
+                getView().onBannerSuccess(bannerBean);
+            }
+
+            @Override
+            public void onBannerError(Throwable throwable) {
+                getView().onBannerError(throwable);
+            }
+
+            @Override
+            public void onCartSuccess(CartBean cartBean) {
+                getView().onCartSuccess(cartBean);
+            }
+
+            @Override
+            public void onCartError(Throwable throwable) {
+                getView().onCartError(throwable);
             }
         });
     }
 
     @Override
-    public void getInfoParam(String url, Map<String, Object> map, Class cls) {
-        iModel.getInfoParam(url, map, cls, new Contract.MyCallBack() {
+    public void getInfo() {
+        iModel.getInfo(new Contract.MyCallBack() {
             @Override
-            public void onSuccess(Object o) {
-                getView().onSuccess(o);
+            public void onHomeSuccess(UserBean userBean) {
+                getView().onHomeSuccess(userBean);
             }
 
             @Override
-            public void onError(String error) {
-                getView().onError(error);
+            public void onHomeError(Throwable throwable) {
+                getView().onHomeError(throwable);
+            }
+
+            @Override
+            public void onBannerSuccess(BannerBean bannerBean) {
+                getView().onBannerSuccess(bannerBean);
+            }
+
+            @Override
+            public void onBannerError(Throwable throwable) {
+                getView().onBannerError(throwable);
+            }
+
+            @Override
+            public void onCartSuccess(CartBean cartBean) {
+                getView().onCartSuccess(cartBean);
+            }
+
+            @Override
+            public void onCartError(Throwable throwable) {
+                getView().onCartError(throwable);
             }
         });
     }
+
+    @Override
+    public void getInfoParam() {
+        iModel.getInfoParam(new Contract.MyCallBack() {
+            @Override
+            public void onHomeSuccess(UserBean userBean) {
+                getView().onHomeSuccess(userBean);
+            }
+
+            @Override
+            public void onHomeError(Throwable throwable) {
+                getView().onHomeError(throwable);
+            }
+
+            @Override
+            public void onBannerSuccess(BannerBean bannerBean) {
+                getView().onBannerSuccess(bannerBean);
+            }
+
+            @Override
+            public void onBannerError(Throwable throwable) {
+                getView().onBannerError(throwable);
+            }
+
+            @Override
+            public void onCartSuccess(CartBean cartBean) {
+                getView().onCartSuccess(cartBean);
+            }
+
+            @Override
+            public void onCartError(Throwable throwable) {
+                getView().onCartError(throwable);
+            }
+        });
+    }
+
 }

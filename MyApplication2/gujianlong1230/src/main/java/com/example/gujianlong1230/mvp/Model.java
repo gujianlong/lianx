@@ -7,40 +7,104 @@ package com.example.gujianlong1230.mvp;
  * */
 
 
+import com.example.gujianlong1230.bean.BannerBean;
+import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.contract.Contract;
 import com.example.gujianlong1230.utils.NetUtils;
 
 import java.util.Map;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+
 public class Model implements Contract.IModel {
 
-    @Override
-    public void getInfo(String url, Class cls, final Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getJsonGet(url, cls, new NetUtils.NetCallBack() {
-            @Override
-            public void onSuccess(Object o) {
-                myCallBack.onSuccess(o);
-            }
 
-            @Override
-            public void onError(String error) {
-                myCallBack.onError(error);
-            }
-        });
+    @Override
+    public void getInfoBanner(Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getApiService().getInfoBanner()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BannerBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BannerBean bannerBean) {
+                        myCallBack.onBannerSuccess(bannerBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myCallBack.onBannerError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @Override
-    public void getInfoParam(String url, Map<String, Object> map, Class cls, final Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getJsonGetParams(url, map, cls, new NetUtils.NetCallBack() {
-            @Override
-            public void onSuccess(Object o) {
-                myCallBack.onSuccess(o);
-            }
+    public void getInfo(Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getApiService().getInfoNot()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-            @Override
-            public void onError(String error) {
-                myCallBack.onError(error);
-            }
-        });
+                    }
+
+                    @Override
+                    public void onNext(UserBean userBean) {
+                        myCallBack.onHomeSuccess(userBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myCallBack.onHomeError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
+
+    @Override
+    public void getInfoParam(Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getApiService().getInfoParam("11357","157844454568111357")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CartBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CartBean cartBean) {
+                        myCallBack.onCartSuccess(cartBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myCallBack.onCartError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
 }

@@ -17,6 +17,7 @@ import com.example.gujianlong1230.app.MyApp;
 import com.example.gujianlong1230.base.BaseActivity;
 import com.example.gujianlong1230.base.BasePresenter;
 import com.example.gujianlong1230.bean.BannerBean;
+import com.example.gujianlong1230.bean.CartBean;
 import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.mvp.Presenter;
 import com.example.gujianlong1230.url.MyUrl;
@@ -42,8 +43,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void startDing() {
-        mPresenter.getInfo(MyUrl.BannerBean, BannerBean.class);
-        mPresenter.getInfo(MyUrl.HomeBean, UserBean.class);
+        mPresenter.getInfo();
+        mPresenter.getInfo();
         myAdapter = new MyAdapter(this, mMlssList, mPzshList, mRxxpList);
         recyclerView.setAdapter(myAdapter);
     }
@@ -65,28 +66,45 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
+
+
     @Override
-    public void onSuccess(Object o) {
-        if (o instanceof BannerBean) {
-            bannerList.addAll(((BannerBean) o).getResult());
-            xBanner.setBannerData(bannerList);
-            xBanner.loadImage(new XBanner.XBannerAdapter() {
-                @Override
-                public void loadBanner(XBanner banner, Object model, View view, int position) {
-                    Glide.with(banner).load(bannerList.get(position).getImageUrl()).into((ImageView) view);
-                }
-            });
-        }
-        if (o instanceof UserBean) {
-            mPzshList.add(((UserBean) o).getResult().getPzsh());
-            mMlssList.add(((UserBean) o).getResult().getMlss());
-            mRxxpList.add(((UserBean) o).getResult().getRxxp());
-            myAdapter.notifyDataSetChanged();
-        }
+    public void onHomeSuccess(UserBean userBean) {
+        mPzshList.add(userBean.getResult().getPzsh());
+        mMlssList.add(userBean.getResult().getMlss());
+        mRxxpList.add(userBean.getResult().getRxxp());
+        myAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onError(String error) {
+    public void onHomeError(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onBannerSuccess(BannerBean bannerBean) {
+        bannerList.addAll(bannerBean.getResult());
+        xBanner.setBannerData(bannerList);
+        xBanner.loadImage(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+                Glide.with(banner).load(bannerList.get(position).getImageUrl()).into((ImageView) view);
+            }
+        });
+    }
+
+    @Override
+    public void onBannerError(Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCartSuccess(CartBean cartBean) {
+
+    }
+
+    @Override
+    public void onCartError(Throwable throwable) {
 
     }
 }

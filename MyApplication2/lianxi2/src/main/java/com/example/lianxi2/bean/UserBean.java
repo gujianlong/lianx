@@ -83,6 +83,16 @@ public class UserBean {
             private int count;
             private String pic;
             private int price;
+            private boolean isChecked;
+
+            public boolean isChecked() {
+                return isChecked;
+            }
+
+            public void setChecked(boolean checked) {
+                isChecked = checked;
+            }
+
 
             public int getCommodityId() {
                 return commodityId;

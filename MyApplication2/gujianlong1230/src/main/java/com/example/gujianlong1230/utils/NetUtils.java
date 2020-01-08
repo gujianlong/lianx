@@ -64,76 +64,7 @@ public class NetUtils {
         return net.netUtils;
     }
 
-    public interface NetCallBack<T> {
-        void onSuccess(T t);
-
-        void onError(String error);
+    public ApiService getApiService() {
+        return apiService;
     }
-
-    public void getJsonGet(String url, final Class cls, final NetCallBack netCallBack) {
-        apiService.getInfoNo(url)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        Gson gson = new Gson();
-                        try {
-                            Object o = gson.fromJson(responseBody.string(), cls);
-                            netCallBack.onSuccess(o);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        netCallBack.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    public void getJsonGetParams(String url, Map<String, Object> map, final Class cls, final NetCallBack netCallBack) {
-        apiService.getInfoParam(url, map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ResponseBody>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        Gson gson = new Gson();
-                        try {
-                            Object o = gson.fromJson(responseBody.string(), cls);
-                            netCallBack.onSuccess(o);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        netCallBack.onError(e.getMessage());
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
 }

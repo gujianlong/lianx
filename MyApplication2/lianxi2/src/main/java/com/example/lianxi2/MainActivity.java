@@ -1,11 +1,11 @@
 package com.example.lianxi2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ExpandableListAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lianxi2.adapter.MyAdapter;
@@ -14,23 +14,34 @@ import com.example.lianxi2.base.BasePresenter;
 import com.example.lianxi2.bean.UserBean;
 import com.example.lianxi2.mvp.Presenter;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
 
+    @BindView(R.id.eLv)
+    ExpandableListView eLv;
+    @BindView(R.id.check)
+    CheckBox check;
+    @BindView(R.id.TotalPrice)
+    TextView TotalPrice;
+    @BindView(R.id.TotalNum)
+    Button TotalNum;
     private ExpandableListView expandableListView;
-    //private List<UserBean.ResultBean> list = new ArrayList<>();
+    private MyAdapter myAdapter;
 
     @Override
     protected void startDing() {
         mPresenter.getInfoParams();
+
     }
 
     @Override
     protected void initView() {
-        expandableListView = findViewById(R.id.eLv);
     }
 
     @Override
@@ -46,15 +57,46 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onClassSuccess(UserBean homeBean) {
         List<UserBean.ResultBean> result = homeBean.getResult();
-        MyAdapter myAdapter = new MyAdapter(this, result);
-        expandableListView.setAdapter(myAdapter);
-        for (int i = 0; i <result.size(); i++) {
-            expandableListView.expandGroup(i);
+        myAdapter = new MyAdapter(this, result);
+        eLv.setAdapter(myAdapter);
+        for (int i = 0; i < result.size(); i++) {
+            eLv.expandGroup(i);
         }
+        myAdapter.setOnCartClickListensr(new MyAdapter.OnCartClickListensr() {
+            @Override
+            public void onClickListener() {
+                TotalPrice.setText("总价是:$" + myAdapter.calculateTotalPrice());
+                TotalNum.setText("去结算(" + myAdapter.calculateTotalSum() + ")");
+                check.setChecked(myAdapter.calculateTotalCheck());
+                //Toast.makeText(MainActivity.this, "总价是" + myAdapter.calculateTotalPrice() + "总数量是" + myAdapter.calculateTotalSum(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void onClassError(Throwable throwable) {
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick({R.id.check, R.id.TotalNum})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.check:
+                if (myAdapter != null) {
+                    boolean b = myAdapter.calculateTotalCheck();
+                    b = !b;
+                    myAdapter.calculateTotalStart(b);
+                }
+                break;
+            case R.id.TotalNum:
+                break;
+        }
     }
 }

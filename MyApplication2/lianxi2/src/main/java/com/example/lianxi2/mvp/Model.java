@@ -21,7 +21,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParams(final Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParams("11357","157830205865211357")
+        NetUtils.getInstance().getApiService().getInfoParams("11357","157839537007711357")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserBean>() {
