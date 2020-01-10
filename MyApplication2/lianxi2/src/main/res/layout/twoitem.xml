@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <CheckBox
@@ -15,7 +15,7 @@
         android:layout_height="100dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -28,8 +28,12 @@
             android:id="@+id/two_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
     </LinearLayout>
+
+    <com.example.lianxi2.weight.MyView
+        android:id="@+id/two_myview"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

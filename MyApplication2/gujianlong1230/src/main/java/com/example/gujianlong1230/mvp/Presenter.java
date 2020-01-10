@@ -10,6 +10,8 @@ package com.example.gujianlong1230.mvp;
 import com.example.gujianlong1230.base.BasePresenter;
 import com.example.gujianlong1230.bean.BannerBean;
 import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.DingBean;
+import com.example.gujianlong1230.bean.OrderBean;
 import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.contract.Contract;
 import com.example.gujianlong1230.utils.NetUtils;
@@ -57,6 +59,26 @@ public class Presenter extends BasePresenter {
             public void onCartError(Throwable throwable) {
                 getView().onCartError(throwable);
             }
+
+            @Override
+            public void onDingSuccess(DingBean dingBean) {
+                getView().onDingSuccess(dingBean);
+            }
+
+            @Override
+            public void onDingError(Throwable throwable) {
+                getView().onDingError(throwable);
+            }
+
+            @Override
+            public void onOrderSuccess(OrderBean orderBean) {
+                getView().onOrderSuccess(orderBean);
+            }
+
+            @Override
+            public void onOrderError(Throwable throwable) {
+                getView().onOrderError(throwable);
+            }
         });
     }
 
@@ -92,6 +114,26 @@ public class Presenter extends BasePresenter {
             public void onCartError(Throwable throwable) {
                 getView().onCartError(throwable);
             }
+
+            @Override
+            public void onDingSuccess(DingBean dingBean) {
+                getView().onDingSuccess(dingBean);
+            }
+
+            @Override
+            public void onDingError(Throwable throwable) {
+                getView().onDingError(throwable);
+            }
+
+            @Override
+            public void onOrderSuccess(OrderBean orderBean) {
+                getView().onOrderSuccess(orderBean);
+            }
+
+            @Override
+            public void onOrderError(Throwable throwable) {
+                getView().onOrderError(throwable);
+            }
         });
     }
 
@@ -126,6 +168,136 @@ public class Presenter extends BasePresenter {
             @Override
             public void onCartError(Throwable throwable) {
                 getView().onCartError(throwable);
+            }
+
+            @Override
+            public void onDingSuccess(DingBean dingBean) {
+                getView().onDingSuccess(dingBean);
+            }
+
+            @Override
+            public void onDingError(Throwable throwable) {
+                getView().onDingError(throwable);
+            }
+
+            @Override
+            public void onOrderSuccess(OrderBean orderBean) {
+                getView().onOrderSuccess(orderBean);
+            }
+
+            @Override
+            public void onOrderError(Throwable throwable) {
+                getView().onOrderError(throwable);
+            }
+        });
+    }
+
+    @Override
+    public void getInfoParamDing() {
+        iModel.getInfoParamDing(new Contract.MyCallBack() {
+            @Override
+            public void onHomeSuccess(UserBean userBean) {
+                getView().onHomeSuccess(userBean);
+            }
+
+            @Override
+            public void onHomeError(Throwable throwable) {
+                getView().onHomeError(throwable);
+            }
+
+            @Override
+            public void onBannerSuccess(BannerBean bannerBean) {
+                getView().onBannerSuccess(bannerBean);
+            }
+
+            @Override
+            public void onBannerError(Throwable throwable) {
+                getView().onBannerError(throwable);
+            }
+
+            @Override
+            public void onCartSuccess(CartBean cartBean) {
+                getView().onCartSuccess(cartBean);
+            }
+
+            @Override
+            public void onCartError(Throwable throwable) {
+                getView().onCartError(throwable);
+            }
+
+            @Override
+            public void onDingSuccess(DingBean dingBean) {
+                getView().onDingSuccess(dingBean);
+            }
+
+            @Override
+            public void onDingError(Throwable throwable) {
+                getView().onDingError(throwable);
+            }
+
+            @Override
+            public void onOrderSuccess(OrderBean orderBean) {
+                getView().onOrderSuccess(orderBean);
+            }
+
+            @Override
+            public void onOrderError(Throwable throwable) {
+                getView().onOrderError(throwable);
+            }
+        });
+    }
+
+    @Override
+    public void getInfoParamOrder(int status, int page, int count) {
+        iModel.getInfoParamOrder(status, page, count, new Contract.MyCallBack() {
+            @Override
+            public void onHomeSuccess(UserBean userBean) {
+                getView().onHomeSuccess(userBean);
+            }
+
+            @Override
+            public void onHomeError(Throwable throwable) {
+                getView().onHomeError(throwable);
+            }
+
+            @Override
+            public void onBannerSuccess(BannerBean bannerBean) {
+                getView().onBannerSuccess(bannerBean);
+            }
+
+            @Override
+            public void onBannerError(Throwable throwable) {
+                getView().onBannerError(throwable);
+            }
+
+            @Override
+            public void onCartSuccess(CartBean cartBean) {
+                getView().onCartSuccess(cartBean);
+            }
+
+            @Override
+            public void onCartError(Throwable throwable) {
+                getView().onCartError(throwable);
+            }
+
+            @Override
+            public void onDingSuccess(DingBean dingBean) {
+                getView().onDingSuccess(dingBean);
+            }
+
+            @Override
+            public void onDingError(Throwable throwable) {
+                getView().onDingError(throwable);
+            }
+
+            @Override
+            public void onOrderSuccess(OrderBean orderBean) {
+                getView().onOrderSuccess(orderBean);
+            }
+
+            @Override
+            public void onOrderError(Throwable throwable) {
+                getView().onOrderError(throwable);
             }
         });
     }

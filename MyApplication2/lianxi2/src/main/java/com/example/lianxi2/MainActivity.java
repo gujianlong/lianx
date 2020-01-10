@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.lianxi2.adapter.MyAdapter;
 import com.example.lianxi2.base.BaseActivity;
 import com.example.lianxi2.base.BasePresenter;
+import com.example.lianxi2.bean.OrderBean;
 import com.example.lianxi2.bean.UserBean;
 import com.example.lianxi2.mvp.Presenter;
 
@@ -79,6 +80,16 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void onOrderSuccess(OrderBean orderBean) {
+
+    }
+
+    @Override
+    public void onOrderError(Throwable throwable) {
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
@@ -93,6 +104,9 @@ public class MainActivity extends BaseActivity {
                     boolean b = myAdapter.calculateTotalCheck();
                     b = !b;
                     myAdapter.calculateTotalStart(b);
+                    TotalPrice.setText("总价是:$" + myAdapter.calculateTotalPrice());
+                    TotalNum.setText("去结算(" + myAdapter.calculateTotalSum() + ")");
+                    check.setChecked(myAdapter.calculateTotalCheck());
                 }
                 break;
             case R.id.TotalNum:

@@ -9,6 +9,8 @@ package com.example.gujianlong1230.mvp;
 
 import com.example.gujianlong1230.bean.BannerBean;
 import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.DingBean;
+import com.example.gujianlong1230.bean.OrderBean;
 import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.contract.Contract;
 import com.example.gujianlong1230.utils.NetUtils;
@@ -81,7 +83,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParam(Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParam("11357","157844454568111357")
+        NetUtils.getInstance().getApiService().getInfoParam("11357", "157844454568111357")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CartBean>() {
@@ -98,6 +100,62 @@ public class Model implements Contract.IModel {
                     @Override
                     public void onError(Throwable e) {
                         myCallBack.onCartError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getInfoParamDing(Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getApiService().getInfoParamDing("11357", "157853080221311357")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<DingBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(DingBean dingBean) {
+                        myCallBack.onDingSuccess(dingBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myCallBack.onDingError(e);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getInfoParamOrder(int status, int page, int count, Contract.MyCallBack myCallBack) {
+        NetUtils.getInstance().getApiService().getInfoParamOrder("11357", "157853080221311357",status, page, count)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<OrderBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(OrderBean orderBean) {
+                        myCallBack.onOrderSuccess(orderBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        myCallBack.onOrderError(e);
                     }
 
                     @Override

@@ -13,16 +13,14 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.TabWidget;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.lianxi2.R;
 import com.example.lianxi2.bean.UserBean;
 import com.example.lianxi2.utils.GlideUtils;
+import com.example.lianxi2.weight.MyView;
 
 import java.util.List;
-import java.util.concurrent.TransferQueue;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -128,6 +126,8 @@ public class MyAdapter extends BaseExpandableListAdapter {
         twoViewHolder.twoName.setText(shoppingCartListBean.getCommodityName());
         twoViewHolder.twoPrice.setText(shoppingCartListBean.getPrice() + "");
         GlideUtils.loadImage(shoppingCartListBean.getPic(), twoViewHolder.twoImage);
+        twoViewHolder.twoMyview.setSum(shoppingCartListBean.getCount());
+        twoViewHolder.twoCheck.setChecked(shoppingCartListBean.isChecked());
         twoViewHolder.twoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,8 +138,16 @@ public class MyAdapter extends BaseExpandableListAdapter {
                 notifyDataSetChanged();
             }
         });
-
-        twoViewHolder.twoCheck.setChecked(shoppingCartListBean.isChecked());
+        twoViewHolder.twoMyview.setOnItemClick(new MyView.OnItemClick() {
+            @Override
+            public void itemClick(int click) {
+                shoppingCartListBean.setCount(click);
+                if (onCartClickListensr != null) {
+                    onCartClickListensr.onClickListener();
+                }
+                notifyDataSetChanged();
+            }
+        });
 
 
         return convertView;
@@ -166,6 +174,7 @@ public class MyAdapter extends BaseExpandableListAdapter {
         return totalPrice;
     }
 
+    //商品全选
     public boolean calculateTotalCheck() {
         boolean totalPrice = true;
         for (int i = 0; i < list.size(); i++) {
@@ -221,20 +230,6 @@ public class MyAdapter extends BaseExpandableListAdapter {
         }
     }
 
-    static class TwoViewHolder {
-        @BindView(R.id.two_check)
-        CheckBox twoCheck;
-        @BindView(R.id.two_image)
-        ImageView twoImage;
-        @BindView(R.id.two_name)
-        TextView twoName;
-        @BindView(R.id.two_price)
-        TextView twoPrice;
-
-        TwoViewHolder(View view) {
-            ButterKnife.bind(this, view);
-        }
-    }
 
     public interface OnCartClickListensr {
         void onClickListener();
@@ -244,5 +239,22 @@ public class MyAdapter extends BaseExpandableListAdapter {
 
     public void setOnCartClickListensr(OnCartClickListensr onCartClickListensr) {
         this.onCartClickListensr = onCartClickListensr;
+    }
+
+    static class TwoViewHolder {
+        @BindView(R.id.two_check)
+        CheckBox twoCheck;
+        @BindView(R.id.two_image)
+        ImageView twoImage;
+        @BindView(R.id.two_name)
+        TextView twoName;
+        @BindView(R.id.two_price)
+        TextView twoPrice;
+        @BindView(R.id.two_myview)
+        MyView twoMyview;
+
+        TwoViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

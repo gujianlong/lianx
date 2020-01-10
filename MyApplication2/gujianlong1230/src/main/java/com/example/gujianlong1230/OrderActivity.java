@@ -1,13 +1,11 @@
 package com.example.gujianlong1230;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
 
-import com.example.gujianlong1230.adabter.CartAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.gujianlong1230.adabter.OrderAdapter;
 import com.example.gujianlong1230.base.BaseActivity;
 import com.example.gujianlong1230.base.BasePresenter;
 import com.example.gujianlong1230.bean.BannerBean;
@@ -16,23 +14,28 @@ import com.example.gujianlong1230.bean.DingBean;
 import com.example.gujianlong1230.bean.OrderBean;
 import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.mvp.Presenter;
-import com.example.gujianlong1230.url.MyUrl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class CartActivity extends BaseActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class OrderActivity extends BaseActivity {
+    @BindView(R.id.rv)
+    RecyclerView rv;
+    private int status = 0;
+    private int page = 1;
+    private int count = 5;
+    private List<OrderBean.OrderListBean> list = new ArrayList<>();
+    private OrderAdapter orderAdapter;
 
-    private ExpandableListView elv;
-    private CartAdapter cartAdapter;
 
     @Override
     protected void startDing() {
-        mPresenter.getInfoParam();
-
+        mPresenter.getInfoParamOrder(status, page, count);
+        orderAdapter = new OrderAdapter(this, list);
+        rv.setAdapter(orderAdapter);
     }
 
     @Override
@@ -42,14 +45,13 @@ public class CartActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        elv = findViewById(R.id.elv);
+        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_gouwuche;
+        return R.layout.activity_order;
     }
-
 
     @Override
     public void onHomeSuccess(UserBean userBean) {
@@ -73,18 +75,12 @@ public class CartActivity extends BaseActivity {
 
     @Override
     public void onCartSuccess(CartBean cartBean) {
-        List<CartBean.ResultBean> result = cartBean.getResult();
-        cartAdapter = new CartAdapter(this, result);
-        elv.setAdapter(cartAdapter);
-//        for (int i = 0; i < result.size(); i++) {
-//            elv.expandGroup(i);
-//        }
-        cartAdapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onCartError(Throwable throwable) {
-        Toast.makeText(this, "请求失败" + throwable, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -99,11 +95,14 @@ public class CartActivity extends BaseActivity {
 
     @Override
     public void onOrderSuccess(OrderBean orderBean) {
-
+        list.clear();
+        list.addAll(orderBean.getOrderList());
+        orderAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onOrderError(Throwable throwable) {
 
     }
+
 }

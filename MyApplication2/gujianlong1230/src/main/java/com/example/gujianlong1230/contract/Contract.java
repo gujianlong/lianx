@@ -9,6 +9,8 @@ package com.example.gujianlong1230.contract;
 
 import com.example.gujianlong1230.bean.BannerBean;
 import com.example.gujianlong1230.bean.CartBean;
+import com.example.gujianlong1230.bean.DingBean;
+import com.example.gujianlong1230.bean.OrderBean;
 import com.example.gujianlong1230.bean.UserBean;
 
 import java.util.Map;
@@ -26,6 +28,14 @@ public interface Contract {
         void onCartSuccess(CartBean cartBean);
 
         void onCartError(Throwable throwable);
+
+        void onDingSuccess(DingBean dingBean);
+
+        void onDingError(Throwable throwable);
+
+        void onOrderSuccess(OrderBean orderBean);
+
+        void onOrderError(Throwable throwable);
     }
 
     interface IView {
@@ -40,6 +50,14 @@ public interface Contract {
         void onCartSuccess(CartBean cartBean);
 
         void onCartError(Throwable throwable);
+
+        void onDingSuccess(DingBean dingBean);
+
+        void onDingError(Throwable throwable);
+
+        void onOrderSuccess(OrderBean orderBean);
+
+        void onOrderError(Throwable throwable);
     }
 
     interface IModel {
@@ -48,6 +66,12 @@ public interface Contract {
         void getInfo(MyCallBack myCallBack);
 
         void getInfoParam(MyCallBack myCallBack);
+
+        void getInfoParamDing(MyCallBack myCallBack);
+
+        void getInfoParamOrder(int status, int page, int count, MyCallBack myCallBack);
+
+
     }
 
     interface IPresenter {
@@ -56,6 +80,10 @@ public interface Contract {
         void getInfo();
 
         void getInfoParam();
+
+        void getInfoParamDing();
+
+        void getInfoParamOrder(int status, int page, int count);
     }
 
 }

@@ -7,6 +7,7 @@ package com.example.lianxi2.api;
  * */
 
 
+import com.example.lianxi2.bean.OrderBean;
 import com.example.lianxi2.bean.UserBean;
 
 import io.reactivex.Observable;
@@ -19,4 +20,8 @@ public interface ApiService {
 
     @GET("order/verify/v1/findShoppingCart")
     Observable<UserBean> getInfoParams(@Header("userId") String userId, @Header("sessionId") String sessionId);
+
+    @GET("order/verify/v1/findOrderListByStatus")
+    Observable<OrderBean> getInfoParamsOrder(@Header("userId") String userId, @Header("sessionId") String sessionId,
+                                             @Query("count") int count, @Query("page") int page, @Query("status") int status);
 }

@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gujianlong1230.contract.Contract;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements Contract.IView {
     public P mPresenter;
 
@@ -22,11 +24,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
         if (layoutId()!=0){
             setContentView(layoutId());
-            initView();
+            ButterKnife.bind(this);
             mPresenter=getPresenter();
             if (mPresenter != null) {
                 mPresenter.onAttch(this);
             }
+            initView();
             startDing();
         }
     }

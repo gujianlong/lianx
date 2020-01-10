@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lianxi2.contract.Contract;
 
+import butterknife.ButterKnife;
+
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements Contract.IView {
     public P mPresenter;
@@ -26,6 +28,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         if (mPresenter != null) {
             mPresenter.onAttch(this);
         }
+        ButterKnife.bind(this);
         initView();
         startDing();
     }
