@@ -22,7 +22,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParamsOrder(int count, int page, int status, Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParamsOrder("11357","157855779894411357",count,page,status)
+        NetUtils.getInstance().getApiService().getInfoParamsOrder("11357","157864258238111357",count,page,status)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OrderBean>() {
@@ -49,7 +49,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParams(final Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParams("11357","157855779894411357")
+        NetUtils.getInstance().getApiService().getInfoParams("11357","157864258238111357")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<UserBean>() {

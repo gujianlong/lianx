@@ -8,12 +8,15 @@ package com.example.gujianlong1230.adabter;
 
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gujianlong1230.R;
@@ -38,16 +41,26 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneHolder> {
     @NonNull
     @Override
     public OneHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = View.inflate(context, R.layout.one_order, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.one_order, parent, false);
+
         return new OneHolder(inflate);
     }
 
     @Override
     public void onBindViewHolder(@NonNull OneHolder holder, int position) {
-        holder.oneding.setText(list.get(position).getUserId() + "");
-        holder.onephone.setText(list.get(position).getOrderTime() + "");
+        holder.oneding.setText(list.get(position).getOrderTime() + "");
+        holder.onephone.setText(list.get(position).getUserId() + "");
         TwoOrderAdapter twoOrderAdapter = new TwoOrderAdapter(list.get(position).getDetailList(), context);
         holder.onerv.setAdapter(twoOrderAdapter);
+        if (list.get(position).getOrderStatus() == 1) {
+            holder.onebutton.setText("代付款");
+        } else if (list.get(position).getOrderStatus() == 2) {
+            holder.onebutton.setText("待收货");
+        } else if (list.get(position).getOrderStatus() == 3) {
+            holder.onebutton.setText("待评价");
+        } else {
+            holder.onebutton.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -62,10 +75,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneHolder> {
         RecyclerView onerv;
         @BindView(R.id.onephone)
         TextView onephone;
+        @BindView(R.id.onebutton)
+        Button onebutton;
 
         public OneHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            onerv.setLayoutManager(new LinearLayoutManager(context));
         }
     }
 
@@ -81,7 +97,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneHolder> {
         @NonNull
         @Override
         public TwoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View inflate = View.inflate(context, R.layout.two_order, null);
+            View inflate = LayoutInflater.from(context).inflate(R.layout.two_order, parent, false);
             return new TwoHolder(inflate);
         }
 
