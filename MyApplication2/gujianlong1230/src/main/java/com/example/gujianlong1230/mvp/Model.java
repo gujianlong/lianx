@@ -83,7 +83,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParam(Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParam("11357", "157870443494711357")
+        NetUtils.getInstance().getApiService().getInfoParam("11357", "157879140258511357")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<CartBean>() {
@@ -111,7 +111,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParamDing(Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParamDing("11357", "157870443494711357")
+        NetUtils.getInstance().getApiService().getInfoParamDing("11357", "157879140258511357")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DingBean>() {
@@ -139,7 +139,7 @@ public class Model implements Contract.IModel {
 
     @Override
     public void getInfoParamOrder(int status, int page, int count, Contract.MyCallBack myCallBack) {
-        NetUtils.getInstance().getApiService().getInfoParamOrder("11357", "157870443494711357", status, page, count)
+        NetUtils.getInstance().getApiService().getInfoParamOrder("11357", "157879140258511357", status, page, count)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<OrderBean>() {

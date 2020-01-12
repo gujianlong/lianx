@@ -61,6 +61,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneHolder> {
         } else {
             holder.onebutton.setVisibility(View.GONE);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClick.itemClick(position);
+            }
+        });
     }
 
     @Override
@@ -131,4 +137,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneHolder> {
     }
 
 
+    public interface OnItemClick {
+        void itemClick(int position);
+    }
+
+    OnItemClick onItemClick;
+
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
 }

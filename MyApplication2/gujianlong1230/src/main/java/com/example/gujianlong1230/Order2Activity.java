@@ -1,12 +1,10 @@
 package com.example.gujianlong1230;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.gujianlong1230.adabter.OrderAdapter;
 import com.example.gujianlong1230.base.BaseActivity;
 import com.example.gujianlong1230.base.BasePresenter;
 import com.example.gujianlong1230.bean.BannerBean;
@@ -16,36 +14,22 @@ import com.example.gujianlong1230.bean.OrderBean;
 import com.example.gujianlong1230.bean.UserBean;
 import com.example.gujianlong1230.mvp.Presenter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class OrderActivity extends BaseActivity {
-    @BindView(R.id.rv)
-    RecyclerView rv;
-    private int status = 0;
-    private int page = 1;
-    private int count = 5;
-    private List<OrderBean.OrderListBean> list = new ArrayList<>();
-    private OrderAdapter orderAdapter;
+public class Order2Activity extends BaseActivity {
 
+
+    @BindView(R.id.price)
+    TextView price;
+    @BindView(R.id.button)
+    Button button;
 
     @Override
     protected void startDing() {
-        mPresenter.getInfoParamOrder(status, page, count);
-        orderAdapter = new OrderAdapter(this, list);
-        rv.setAdapter(orderAdapter);
-
-        orderAdapter.setOnItemClick(new OrderAdapter.OnItemClick() {
-            @Override
-            public void itemClick(int position) {
-                Intent intent = new Intent(OrderActivity.this, Order2Activity.class);
-                intent.putExtra("key", list.get(position).getDetailList().get(position).getCommodityPrice());
-                startActivity(intent);
-            }
-        });
+        String key = getIntent().getStringExtra("key");
+        price.setText(key);
     }
 
     @Override
@@ -55,12 +39,12 @@ public class OrderActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        rv.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     @Override
     protected int layoutId() {
-        return R.layout.activity_order;
+        return R.layout.activity_order2;
     }
 
     @Override
@@ -105,9 +89,7 @@ public class OrderActivity extends BaseActivity {
 
     @Override
     public void onOrderSuccess(OrderBean orderBean) {
-        list.clear();
-        list.addAll(orderBean.getOrderList());
-        orderAdapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -115,4 +97,9 @@ public class OrderActivity extends BaseActivity {
 
     }
 
+
+    @OnClick(R.id.button)
+    public void onViewClicked() {
+        Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
+    }
 }
