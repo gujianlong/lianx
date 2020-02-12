@@ -1,0 +1,2 @@
+include ':app', ':zuoye1', ':zuoye2', ':zuoye3', ':zuoye4', ':zuoye5', ':gujianlongnetsample', ':gujianlongnetsample2', ':mygujianlong', ':mycart', ':myorder'
+rootProject.name='My Application'
