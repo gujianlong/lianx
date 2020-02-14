@@ -1,0 +1,2 @@
+include ':app', ':lianxi2'
+rootProject.name='lianxi'

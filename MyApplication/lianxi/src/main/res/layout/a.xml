@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/a_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是订单号" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/a_recy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/a_Delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除订单" />
+
+        <Button
+            android:id="@+id/a_Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="去支付" />
+    </RelativeLayout>
 
 </LinearLayout>

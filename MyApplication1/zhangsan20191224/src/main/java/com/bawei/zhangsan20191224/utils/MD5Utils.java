@@ -1,4 +1,6 @@
-package com.tsy.sdk.myutil;
+package com.bawei.zhangsan20191224.utils;
+
+import android.util.Log;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -37,7 +39,6 @@ public class MD5Utils {
             //32位加密
             return buf.toString();
         } catch (NoSuchAlgorithmException e) {
-            LogUtils.e(TAG, "getMd5 error", e);
             return null;
         }
 

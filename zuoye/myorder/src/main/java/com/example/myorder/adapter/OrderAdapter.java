@@ -52,21 +52,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OneViewHolde
         OrderBean.OrderListBean orderListBean = list.get(position);
         holder.oneId.setText(orderListBean.getOrderId());
         int orderStatus = orderListBean.getOrderStatus();
-//        if (orderStatus == 1) {
-//            holder.oneTime.setText(View.GONE);
-//            //holder.oneButton.setText(View.VISIBLE);
-//            holder.oneButton.setText("去支付");
-//        } else if (orderStatus == 2) {
-//            holder.oneTime.setText(View.GONE);
-//            //holder.oneButton.setText(View.VISIBLE);
-//            holder.oneButton.setText("确认收货");
-//        } else if (orderStatus == 3) {
-//            holder.oneTime.setText(orderListBean.getOrderTime() + "");
-//            holder.oneButton.setText(View.GONE);
-//        } else if (orderStatus == 9) {
-//            holder.oneTime.setText(orderListBean.getOrderTime() + "");
-//            holder.oneButton.setText(View.GONE);
-//        }
+        if (orderStatus == 1) {
+            holder.oneTime.setVisibility(View.GONE);
+            holder.oneButton.setVisibility(View.VISIBLE);
+            holder.oneButton.setText("去支付");
+        } else if (orderStatus == 2) {
+            holder.oneTime.setVisibility(View.GONE);
+            holder.oneButton.setVisibility(View.VISIBLE);
+            holder.oneButton.setText("确认收货");
+        } else if (orderStatus == 3) {
+            holder.oneTime.setText(orderListBean.getOrderTime() + "");
+            holder.oneButton.setVisibility(View.GONE);
+        } else if (orderStatus == 9) {
+            holder.oneTime.setText(orderListBean.getOrderTime() + "");
+            holder.oneButton.setVisibility(View.GONE);
+        }
         TwoOrderAdapter twoOrderAdapter = new TwoOrderAdapter(list.get(position).getDetailList(), context);
         holder.oneRv.setAdapter(twoOrderAdapter);
     }

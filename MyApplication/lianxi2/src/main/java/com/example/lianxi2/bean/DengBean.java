@@ -7,7 +7,7 @@ package com.example.lianxi2.bean;
  * */
 
 
-public class DeanBean {
+public class DengBean {
     /**
      * result : {"headPic":"http://172.17.8.100/images/small/default/user.jpg","nickName":"uP_f566y","phone":"15751701319","sessionId":"157672315881311357","sex":1,"userId":11357}
      * message : 登录成功

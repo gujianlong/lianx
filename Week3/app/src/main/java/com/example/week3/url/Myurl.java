@@ -7,5 +7,6 @@ package com.example.week3.url;
  * */
 
 
-public class Myurl {
+public interface Myurl {
+    String BeanUrl = "http://172.17.8.100/small/";
 }

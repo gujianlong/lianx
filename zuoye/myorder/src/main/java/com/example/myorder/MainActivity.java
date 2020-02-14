@@ -6,6 +6,7 @@ import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.myorder.base.BaseActivity;
@@ -40,7 +41,6 @@ public class MainActivity extends BaseActivity {
         list.add(orderFragment2);
         list.add(orderFragment3);
         list.add(orderFragment9);
-
         vp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {

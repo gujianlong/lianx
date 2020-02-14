@@ -22,7 +22,7 @@ import com.example.lianxi2.bean.UserBean;
 
 import java.util.List;
 
-public class TwoAdapter extends RecyclerView.Adapter<OneAdapter.TwoAdapter.Holder> {
+public class TwoAdapter extends RecyclerView.Adapter<TwoAdapter.Holder> {
     private final List<UserBean.ResultBean.SecondCategoryVoBean> twoList;
     private final Context context;
 

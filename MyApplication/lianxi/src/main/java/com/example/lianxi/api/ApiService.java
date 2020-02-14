@@ -1,4 +1,4 @@
-package com.example.lianxi;
+package com.example.lianxi.api;
 /*
  *@auther:谷建龙
  *@Date: 2019/12/14
@@ -22,7 +22,7 @@ public interface ApiService {
     Observable<ResponseBody> getInfoNoParams(@Url String url);
 
     @GET
-    Observable<ResponseBody> getInfoParams(@Url String url, @HeaderMap Map<String, Object> map);
+    Observable<ResponseBody> getInfoParams(@Url String url, @QueryMap Map<String, Object> map);
 
     @POST
     Observable<ResponseBody> postInfoParams(@Url String url, @QueryMap Map<String, Object> map);

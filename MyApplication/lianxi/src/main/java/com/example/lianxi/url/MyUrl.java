@@ -7,5 +7,8 @@ package com.example.lianxi.url;
  * */
 
 
-public class MyUrl {
+public interface MyUrl {
+    String BEANURL = "http://172.17.8.100/small/";
+    String DINGBEAN = "order/verify/v1/findOrderListByStatus";
+    String DENGBEAN = "user/v1/login";
 }

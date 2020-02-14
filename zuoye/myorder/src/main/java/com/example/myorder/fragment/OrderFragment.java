@@ -31,7 +31,7 @@ public class OrderFragment extends BaseFragment {
 
     @BindView(R.id.rv)
     RecyclerView rv;
-    private int status;
+    private int status=0;
     List<OrderBean.OrderListBean> list=new ArrayList<>();
     private OrderAdapter orderAdapter;
 
@@ -55,15 +55,23 @@ public class OrderFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             status = bundle.getInt("status");
-            mPresenter.getOrderData(27909, "158150044309527909", status, 1, 10);
         }
+        mPresenter.getOrderData(27909, "158150564986027909",status, 1, 5);
         orderAdapter = new OrderAdapter(list,getContext());
         rv.setAdapter(orderAdapter);
+    }
+    public static OrderFragment getInstance(int status) {
+        OrderFragment orderFragment = new OrderFragment();
+        Bundle bundle = new Bundle();
+        bundle.getInt("status", status);
+        orderFragment.setArguments(bundle);
+        return orderFragment;
     }
 
 
     @Override
     public void getOrderSuccess(OrderBean orderBean) {
+        list.clear();
         list.addAll(orderBean.getOrderList());
         orderAdapter.notifyDataSetChanged();
     }
@@ -73,11 +81,5 @@ public class OrderFragment extends BaseFragment {
 
     }
 
-    public static OrderFragment getInstance(int status) {
-        OrderFragment orderFragment = new OrderFragment();
-        Bundle bundle = new Bundle();
-        bundle.getInt("status", status);
-        orderFragment.setArguments(bundle);
-        return orderFragment;
-    }
+
 }
