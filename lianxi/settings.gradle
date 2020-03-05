@@ -1,2 +1,2 @@
-include ':app', ':lianxi2'
+include ':app', ':lianxi2', ':gujianlong2020218', ':gujianlong221', ':zuoye', ':myapplication', ':myapplication2', ':gujianlong20200224', ':my'
 rootProject.name='lianxi'

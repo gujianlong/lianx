@@ -8,29 +8,61 @@ package com.example.lianxi2.fragment;
 
 
 import android.os.Bundle;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.lianxi2.R;
+import com.example.lianxi2.adapter.OrderAdapter;
 import com.example.lianxi2.base.BaseFragment;
 import com.example.lianxi2.base.BasePresenter;
 import com.example.lianxi2.bean.LoginBean;
 import com.example.lianxi2.bean.OrderBean;
 import com.example.lianxi2.bean.RegBean;
 import com.example.lianxi2.mvp.Presenter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
 public class OrderFragment extends BaseFragment {
     @BindView(R.id.rv)
     RecyclerView rv;
+    @BindView(R.id.mSmart)
+    SmartRefreshLayout mSmart;
     private int status = 0;
     private int page = 1;
+    List<OrderBean.OrderListBean> list = new ArrayList<>();
+    private OrderAdapter orderAdapter;
 
     @Override
     protected void initView() {
-
+        rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        mSmart.setEnableRefresh(true);
+        mSmart.setEnableLoadMore(true);
+        mSmart.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                list.clear();
+                page = 1;
+                mPresenter.getDataOrder(27909, "158176549198327909", status, page, 5);
+                mSmart.finishRefresh();
+            }
+        });
+        mSmart.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                page++;
+                mPresenter.getDataOrder(27909, "158176549198327909", status, page, 5);
+                mSmart.finishLoadMore();
+            }
+        });
     }
 
     @Override
@@ -49,8 +81,9 @@ public class OrderFragment extends BaseFragment {
         if (bundle != null) {
             status = bundle.getInt("starts");
         }
-
-        mPresenter.getDataOrder(27909, "158166721273327909", status, page, 10);
+        mPresenter.getDataOrder(27909, "158176549198327909", status, page, 5);
+        orderAdapter = new OrderAdapter(list, getContext());
+        rv.setAdapter(orderAdapter);
     }
 
     public static OrderFragment getInstance(int starts) {
@@ -73,7 +106,7 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     public void onLoginSuccess(LoginBean loginBean) {
-        Toast.makeText(getContext(), "a"+loginBean.getResult(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -83,7 +116,8 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     public void onOrderSuccess(OrderBean orderBean) {
-
+        list.addAll(orderBean.getOrderList());
+        orderAdapter.notifyDataSetChanged();
     }
 
     @Override

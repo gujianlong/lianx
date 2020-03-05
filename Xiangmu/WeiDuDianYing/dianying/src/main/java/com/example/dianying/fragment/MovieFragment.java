@@ -1,0 +1,29 @@
+package com.example.dianying.fragment;
+/*
+ *@auther:谷建龙
+ *@Date: 2020/3/1
+ *@Time:17:11
+ *@Description:
+ * */
+
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.example.dianying.R;
+
+public class HomeFragment extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View inflate = inflater.inflate(R.layout.home_fragment, container, false);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+}
