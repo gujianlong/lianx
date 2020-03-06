@@ -10,6 +10,8 @@ package com.example.gujianlong221.utils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.gujianlong221.R;
 import com.example.gujianlong221.app.MyApp;
 
@@ -19,6 +21,8 @@ public class GlideUtils {
                 .load(url)
                 .error(R.mipmap.ic_launcher)
                 .placeholder(R.mipmap.ic_launcher)
+                //圆形图片
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into(imageView);
     }
 }

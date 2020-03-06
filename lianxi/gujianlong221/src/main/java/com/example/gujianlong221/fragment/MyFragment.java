@@ -34,7 +34,7 @@ public class MyFragment extends BaseFragment {
 
     @Override
     protected void initView(View inflate) {
-
+        //点击事件
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +42,7 @@ public class MyFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
+        button.setText("我是吃不胖的小姐姐");
     }
 
     @Override
